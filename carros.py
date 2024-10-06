@@ -14,7 +14,7 @@ while opcao >=1 and opcao<4 or opcao == 4:
         n = int(input("\nQuantos veículos você deseja cadastrar? "))
         for i in range(n):
             carro["marca"] = str(input(f"Insira a marca do {i+1}º veículo: ")).lower()
-            #carro["modelo"] = str(input(f"Insira o modelo do veículo: ")).lower()
+            carro["modelo"] = str(input(f"Insira o modelo do veículo: ")).lower()
             carro["ano"] = int(input("Insira o ano-modelo do veículo: "))
             #carro["autonomia"] = float(input("Insira quantos km o veículo faz por litro: "))
             carros.append(carro)
@@ -30,7 +30,7 @@ while opcao >=1 and opcao<4 or opcao == 4:
             if termo == carros[i]["marca"]:
                 print(f"Os veículos da marca {termo} presentes no sistema são:")
                 for i in range(len(carros)):
-                    print(f"{carros[i]["modelo"]}, {carros[i]["ano"]}")
+                    print(carros[i]["modelo"], carros[i]["ano"])
     if opcao == 4:
         print("Obrigado por utilizar o sistema!")
         break
