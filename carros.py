@@ -1,14 +1,12 @@
 carros = []
 termo  = ""
 op = 0
-aut = []
 
 def cadastro():
     marca = str(input("Insira a marca do carro: "))
     modelo =str(input("insira modelo do carro: "))
     ano = int(input("Insira o ano-modelo do veículo: "))
     aut = float(input("Insira quantos km o veículo faz por litro: "))
-
     carros.append({
         "marca": marca,
         "modelo": modelo,
@@ -16,6 +14,11 @@ def cadastro():
         "autonomia": aut
     })
 
+def search():
+    termo = str(input("Insira o termo de busca: "))
+    for carro in carros:
+        if termo.lower() == carro['marca'].lower() or termo.lower() == carro['modelo'].lower():
+            print(f"Marca: {carro['marca']}   |   Modelo: {carro['modelo']}   |   Ano: {carro['ano']}   |   Autonomia: {carro['autonomia']} km/l")
 
 bem_vindo = """BEM VINDO"""
 menu = """O que deseja fazer agr?
@@ -29,17 +32,15 @@ Insira a opção desejada: """
 def main():
     print(bem_vindo)
     op = int(input(menu))
-    while op!= 4:
+    while op!= 4 and op>=1:
         if op == 1:
             cadastro()
         elif op == 2:
-            termo = str(input("Insira o termo para busca: "))
-            for carro in carros:
-               print("oi")
-         
+            search()
         elif op == 3:
-            for i in range(len(carros)):
-                print(f"marca : {carros[i]["marca"]}  |  Modelo : {carros[i]["modelo"]}  | Ano : {carros[i]["ano"]} , autonomia : {carros[i]["autonomia"]}")
+            print(bem_vindo)
+        elif op == 4:
+            print("Obrigado por utilizar o sistema")
         else:
             print("Opção inválida!")
 
