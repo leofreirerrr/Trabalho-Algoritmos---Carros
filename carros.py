@@ -1,12 +1,9 @@
 carros = []
-termo  = ""
-op = 0
-
-def cadastro():
-    marca = str(input("Insira a marca do carro: "))
-    modelo =str(input("insira modelo do carro: "))
+def cadastro():#função de cadastro, na main tava com erro pra gerar outros dicionario 
+    marca = str(input("Insira a marca do carro: ")).upper()
+    modelo =str(input("insira modelo do carro: ")).upper()
     ano = int(input("Insira o ano-modelo do veículo: "))
-    aut = float(input("Insira quantos km o veículo faz por litro: "))
+    aut = float(input("Insira quantos km o veículo faz por litro na cidade: "))
     carros.append({
         "marca": marca,
         "modelo": modelo,
@@ -15,10 +12,13 @@ def cadastro():
     })
 
 def search():
-    termo = str(input("Insira o termo de busca: "))
-    for carro in carros:
-        if termo.lower() == carro['marca'].lower() or termo.lower() == carro['modelo'].lower():
-            print(f"Marca: {carro['marca']}   |   Modelo: {carro['modelo']}   |   Ano: {carro['ano']}   |   Autonomia: {carro['autonomia']} km/l")
+    global termo
+    termo = input("Digite por qual veículo você procura: ").upper()
+    for carro in range(len(carros)):
+        if termo == carros[carro]["marca"] or termo == carros[carro]["modelo"] or termo == str(carros[carro]["ano"]) or termo == str(carros[carro]["autonomia"]):
+            print("Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l") #eu queria colocar num print(f) mas por algum caralho de motivo da erro qnd eu faço isso
+
+def 
 
 bem_vindo = """BEM VINDO"""
 menu = """O que deseja fazer agr?
@@ -28,23 +28,19 @@ menu = """O que deseja fazer agr?
 [4] - Sair
 Insira a opção desejada: """
 
-
+op = 0
 def main():
     print(bem_vindo)
     op = int(input(menu))
-    while op!= 4 and op>=1:
+    while op!= 4:
         if op == 1:
             cadastro()
         elif op == 2:
             search()
         elif op == 3:
             print(bem_vindo)
-        elif op == 4:
-            print("Obrigado por utilizar o sistema")
         else:
             print("Opção inválida!")
-
         op = int(input(menu))
-
-
+    print("Obrigado por utilizar o sistema!")
 main()
