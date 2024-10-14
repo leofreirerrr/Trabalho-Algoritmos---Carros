@@ -35,7 +35,8 @@ def search():
     termo = input("Digite marca, modelo, ano ou quantos km o veículo faz pro litro: ").upper()
     for carro in range(len(carros)):
         if termo == carros[carro]["marca"] or termo == carros[carro]["modelo"] or termo == str(carros[carro]["ano"]) or termo == str(carros[carro]["autonomia"]):
-            print(carros[carro]) #eu queria colocar num print(f) mas por algum caralho de motivo da erro qnd eu faço isso
+            print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l") #eu queria colocar num print(f) mas por algum caralho de motivo da erro qnd eu faço isso
+        
             
 def imprimirtudo():
     for carro in range(len(carros)):
@@ -44,9 +45,9 @@ def imprimirtudo():
 def imprimirparte():
     posI = int(input("Insira a posição inicial da vizualização: "))
     posF = int(input("Insira a posição final da vizualização: "))
-    for carro in range(posI-1, posF):
+    for carro in range(posI-1, posF-1):
         print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l")
-    if posF >50:
+    if posF > 49:
         print("Esse numero excede o tamanho da lista")
 
 def imprimir():#talvez eu mude o nome dessa função pq esse nome é ruim demais
