@@ -1,15 +1,19 @@
-carros = [50]
+carros = []
 def cadastro():#função de cadastro, na main tava com erro pra gerar outros dicionario 
-    marca = str(input("Insira a marca do carro: ")).upper()
-    modelo =str(input("insira modelo do carro: ")).upper()
-    ano = int(input("Insira o ano-modelo do veículo: "))
-    aut = float(input("Insira quantos km o veículo faz por litro na cidade: "))
-    carros.append({
-        "marca": marca,
-        "modelo": modelo,
-        "ano": ano,
-        "autonomia": aut
-    })
+    if len(carros)<=50:
+        marca = str(input("Insira a marca do carro: ")).upper()
+        modelo =str(input("insira modelo do carro: ")).upper()
+        ano = int(input("Insira o ano-modelo do veículo: "))
+        aut = float(input("Insira quantos km o veículo faz por litro na cidade: "))
+        carros.append({
+            "marca": marca,
+            "modelo": modelo,
+            "ano": ano,
+            "autonomia": aut
+        })
+    else:
+        print("Limite de carros atingido!")
+        main()
 
 def search():
     global termo
@@ -17,8 +21,10 @@ def search():
     for carro in range(len(carros)):
         if termo == carros[carro]["marca"] or termo == carros[carro]["modelo"] or termo == str(carros[carro]["ano"]) or termo == str(carros[carro]["autonomia"]):
             print("Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l") #eu queria colocar num print(f) mas por algum caralho de motivo da erro qnd eu faço isso
-
-
+        else:
+            print("Elemento não encontrado")
+            main()
+        
 menuimp = """Selecione como você deseja visualizar a lista:
 [1] - Mostrar todos os carros cadastrados
 [2] - Mostrar parte específica da lista
