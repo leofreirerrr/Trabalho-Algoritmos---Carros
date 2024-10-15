@@ -1,66 +1,93 @@
 carros = []
-carro = {}
-termo  = ""
-op = 0
-aut = []
 
-print('='*70)
-print('\t'*3,"SISTEMA DE CADASTRO")
-print('='*70)
-print("[1] - Cadastrar um novo veículo \n[2] - Buscar por algum veículo existente\n[3] - Mostrar todos os veículos existentes\n[4] - Sair")
-opcao = int(input("Selecione o número da opção desejada: "))
+#parte estética
+bem_vindo = """======================================================BEM-VINDO=========================================================="""
+divisaoli = """==========================================================LISTA==========================================================="""
+divisao = """=========================================================================================================================="""
 
-while opcao >=1 and opcao<4:
-    if opcao == 1:
-        n = int(input("\nQuantos veículos você deseja cadastrar? "))
-        for i in range(n):
-            carro["marca"] = str(input(f"Insira a marca do {i+1}º veículo: ")).lower()
-            carro["modelo"] = str(input(f"Insira o modelo do veículo: ")).lower()
-            carro["ano"] = int(input("Insira o ano-modelo do veículo: "))
-            carro["autonomia"] = float(input("Insira quantos km o veículo faz por litro: "))
-            carros.append(carro)
-        print(f"Cadastro Concluído!")
-    print('='*70)
-    opcao = int(input("O que deseja fazer agr?\n[1] - Cadastrar um novo veículo \n[2] - Buscar por algum veículo existente\n[3] - Mostrar carro específico ou todos os carros existentes\n[4] - Sair\nInsira a opção desejada: "))
-    print('='*70)
-    
-    if opcao == 2:
-        op = int(input("Selecione por qual termo você deseja fazer a pesquisa\n[1] - Marca\n[2] - Modelo\n[3] - Ano\n[4] - Autonomia\n[5] - \nInsira a opção desejada: "))
-        if op == 1:
-            termo  = str(input("\nDigite o nome da marca do veículo que você deseja: ")).lower()
-            if termo == carros[i]["marca"]:
-                print(f"Os veículos da marca {termo} presentes no sistema são:")
-                for i in range(len(carros)):
-                    print('modelo:',carros[i]["modelo"], '\t', '\tano:',carros[i]["ano"])#ajustar os termos
-            else:
-                print("Não existem veículos com essa descrição")
-        if op == 2:
-            termo  = str(input("\nDigite o modelo do veículo que você deseja: ")).lower()
-            if termo == carros[i]["modelo"]:
-                print(f"Os veículos do modelo {termo} presentes no sistema são:")
-                for i in range(len(carros)):
-                    print(carros[i]["ano"], carros[i]["autonomia"])#ajustar os termos depois
-            else:
-                print("Não existem veículos com essa descrição")
-        if op == 3:
-            termo  = int(input("\nDigite o ano-modelo do veículo que você deseja: "))
-            if termo == carros[i]["ano"]:
-                print(f"Os veículos dd modelo {termo} presentes no sistema são:")
-                for i in range(len(carros)):
-                    print(carros[i]["marca"], carros[i]["modelo"],carros[i]["ano"])#ajustar os termos depois
-            else:
-                print("Não existem veículos com essa descrição")
-        if op == 4:
-            termo  = float(input("\nDigite o ano-modelo do veículo que você deseja: "))
-            if termo == carros[i]["ano"]:
-                print(f"Os veículos da marca {termo} presentes no sistema sãdao:")
-                for i in range(len(carros)):
-                    print(carros[i]["marca"], carros[i]["modelo"],carros[i]["autonomia"])#ajustar os termos depois 
-    if opcao == 3:
-        print('\t'*3,"LISTA COMPLETA\n")
-        for i in range(len(carros)):
-            print('marca:', carros[i]["marca"],'\t','modelo:',carros[i]["modelo"], '\t', 'ano:',carros[i]["ano"],'\t','autonomia:',carros[i]["autonomia"])
+#menus
+menu = """=> O que deseja fazer agr?
+[1] - Cadastrar um novo veículo 
+[2] - Buscar por algum veículo existente
+[3] - Mostrar carro específico ou todos os carros existentes
+[4] - Sair
+Insira a opção desejada: """
 
-if opcao == 4:
-        print("Obrigado por utilizar o sistema!")
+menuimp = """=> Selecione como você deseja visualizar a lista:
+[1] - Mostrar todos os carros cadastrados
+[2] - Mostrar parte específica da lista
+Insira a opção desejada: """
+
+#funções requisitadas
+def cadastro():#função de cadastro: solicito todos os campos para o usuario e adiciono 
+    if len(carros)<=49:
+        marca = str(input("Insira a marca do carro: ")).upper()
+        modelo =str(input("Insira modelo do carro: ")).upper()
+        ano = int(input("Insira o ano-modelo do veículo: "))
+        aut = float(input("Insira quantos km o veículo faz por litro na cidade: "))
+        carros.append({
+            "marca": marca,
+            "modelo": modelo,
+            "ano": ano,
+            "autonomia": aut
+        })
+        print("\n=>Cadastro concluído!")
+    else:
+        print("Limite de veículos atingido!")
+
+def search():#função de pesquisa: eu transformo todos os tipos registrados no dicionario em string e faço a comparação
+    encontrou = False
+    termo = input("=> Digite marca, modelo, ano ou quantos km o veículo faz pro litro: ").upper()
+    print(divisaoli)
+    for carro in range(len(carros)):
+        if termo == carros[carro]["marca"] or termo == carros[carro]["modelo"] or termo == str(carros[carro]["ano"]) or termo == str(carros[carro]["autonomia"]):
+            print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l") #eu queria colocar num print(f) mas por algum caralho de motivo da erro qnd eu faço isso
+            encontrou = True
+    if encontrou == False:
+        print("Elemento não encontrado")
         
+def mostrartudo():#
+    print(divisaoli)
+    for carro in range(len(carros)):
+            print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l")
+
+def mostrarparte():
+    posI = int(input("Insira a posição inicial da vizualização: "))
+    posF = int(input("Insira a posição final da vizualização: "))
+    print(divisaoli)
+    for carro in range(posI-1, posF):
+        print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l")
+    if posF > 50:
+        print("Esse numero excede o tamanho da lista")
+
+def mostrar():#separei a função em dois para ficar mais facil de trabalhar
+    impop = int(input(menuimp))
+    if impop == 1:
+        mostrartudo()
+    if impop == 2:
+        mostrarparte()
+
+#função principal do programa
+op = 0
+def main():
+    op = int(input(menu))
+    while op!= 4:
+        print(divisao)
+        if op == 1:
+            cadastro()
+            print(divisao)
+        elif op == 2:
+            search()
+            print(divisao)
+        elif op == 3:
+            mostrar()
+            print(divisao)
+        else:
+            print("Opção inválida!")
+        op = int(input(menu))
+    print(divisao)
+    print("=> Obrigado por utilizar o sistema!")
+
+#chama tudo
+print(bem_vindo)
+main()
