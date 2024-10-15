@@ -67,8 +67,7 @@ def mostrar():#separei a função em dois para ficar mais facil de trabalhar
     if impop == 2:
         mostrarparte()
 
-#função principal do programa
-def main():
+def main():#função principal do programa
     op = int(input(menu))
     while op!= 4:
         print(divisao)
