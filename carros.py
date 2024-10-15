@@ -37,11 +37,11 @@ def cadastro():#função de cadastro: solicito todos os campos para o usuario e 
 
 def search():#função de pesquisa: eu transformo todos os tipos registrados no dicionario em string e faço a comparação
     encontrou = False
-    termo = input("=> Digite marca, modelo, ano ou quantos km o veículo faz pro litro: ").upper()
+    termo = input("=> Digite marca, modelo, ano ou quantos km o veículo faz por litro: ").upper()
     print(divisaoli)
     for carro in range(len(carros)):
         if termo == carros[carro]["marca"] or termo == carros[carro]["modelo"] or termo == str(carros[carro]["ano"]) or termo == str(carros[carro]["autonomia"]):
-            print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l") #eu queria colocar num print(f) mas por algum caralho de motivo da erro qnd eu faço isso
+            print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l")
             encontrou = True
     if encontrou == False:
         print("Elemento não encontrado")
