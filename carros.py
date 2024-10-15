@@ -19,7 +19,7 @@ menuimp = """=> Selecione como você deseja visualizar a lista:
 Insira a opção desejada: """
 
 #funções requisitadas
-def cadastro():#função de cadastro: solicito todos os campos para o usuario e adiciono 
+def cadastro():#função de cadastro: solicito todos os campos para o usuario e adiciono o dicionario dentro da lista carros
     if len(carros)<=49:
         marca = str(input("Insira a marca do carro: ")).upper()
         modelo =str(input("Insira modelo do carro: ")).upper()
@@ -46,12 +46,12 @@ def search():#função de pesquisa: eu transformo todos os tipos registrados no 
     if encontrou == False:
         print("Elemento não encontrado")
         
-def mostrartudo():#
+def mostrartudo():#divisão da função mostrar
     print(divisaoli)
     for carro in range(len(carros)):
             print("Posição: ",carro+1,"   |   ","Marca: ",carros[carro]['marca'], "   |   ","Modelo: ", carros[carro]['modelo'], "   |   ", "Ano-modelo: ",carros[carro]['ano'], "   |   ","Autonomia(cidade): ",  carros[carro]['autonomia'], "km/l")
 
-def mostrarparte():
+def mostrarparte():#outra divisão da função mostrar
     posI = int(input("Insira a posição inicial da vizualização: "))
     posF = int(input("Insira a posição final da vizualização: "))
     print(divisaoli)
@@ -68,7 +68,6 @@ def mostrar():#separei a função em dois para ficar mais facil de trabalhar
         mostrarparte()
 
 #função principal do programa
-op = 0
 def main():
     op = int(input(menu))
     while op!= 4:
